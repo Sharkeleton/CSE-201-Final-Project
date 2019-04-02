@@ -33,17 +33,17 @@ public class MovieDatabase {
 		// Creating the file and scanner to read from the file (skips first line)
 		File file = new File(filePath);
 		Scanner sc = new Scanner(file);
-		sc.nextLine();
-		
+
 		while(sc.hasNextLine()) {
 			String curLine = sc.nextLine();
 			String[] splitted = curLine.split("\t");
-			movieList.add(new Movie(
+			Movie mov = new Movie	(
 									Integer.parseInt(splitted[0]), 	// movieID
-									splitted[1],						// title
+									splitted[1],					// title
 									Integer.parseInt(splitted[2]),	// year
 									splitted[3]						// genre
-									));
+									);
+			movieList.add(mov);
 		}
 		sc.close();
 	}
@@ -51,7 +51,6 @@ public class MovieDatabase {
 	// Returns all movies in the database
 	public void getAllMovies() {
 		for(Movie m : movieList) {
-			System.out.println("hi");
 			System.out.println(m.toString());
 		}
 	}
@@ -74,11 +73,25 @@ public class MovieDatabase {
 	}
 	
 	// Returns movies that have a keyword in its title
-	public ArrayList<Movie> getMoviesByTitle(String title) {
+	public ArrayList<Movie> getMoviesByKey(String key, String type) {
 		ArrayList<Movie> movies = new ArrayList<Movie>();
 		for(Movie m : movieList) {
-			if (m.getTitle().contains(title)) {
-				movies.add(m);
+			// if user is looking for title
+			if(type.equals("title")) {
+				if (m.getTitle().contains(key)) {
+					movies.add(m);
+				}
+			}
+			// if user is looking for genre
+			if(type.equals("genre")) {
+				if (m.getGenre().contains(key)) {
+					movies.add(m);
+				}	
+			}
+			if(type.equals("year")) {
+				if (m.getYear() == Integer.parseInt(key)) {
+					movies.add(m);
+				}
 			}
 		}
 		return movies;
