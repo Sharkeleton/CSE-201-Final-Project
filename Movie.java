@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Movie {
+public class Movie implements Comparable<Movie> {
 	// Private variables -----------------------------------------------------
 	private int movieID;
 	private String title;
@@ -42,6 +42,11 @@ public class Movie {
 	// toString method
 	public String toString() {
 		return "Movie [movieID=" + movieID + ", title=" + title + ", year=" + year + ", genre=" + genre + "]";
+	}
+
+	public int compareTo(Movie movie) {
+		return (this.getMovieID() < movie.getMovieID() ? -1:
+			(this.getMovieID() == movie.getMovieID() ? 0 : 1));
 	}
 	
 }

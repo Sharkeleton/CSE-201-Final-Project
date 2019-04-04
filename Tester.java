@@ -1,12 +1,13 @@
 import java.io.FileNotFoundException;
+import java.util.Collections;
 
 public class Tester {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		MovieDatabase movies = new MovieDatabase("movies_db.txt");
+		MovieDatabase movies = new MovieDatabase("Movie.txt");
+		MovieCompareByTitle a = new MovieCompareByTitle();
+		movies.sortMovies();
 		movies.getAllMovies();
-		System.out.println("break");
-		System.out.println(movies.getMoviesByKey("20", "year"));
 	}
 
 }

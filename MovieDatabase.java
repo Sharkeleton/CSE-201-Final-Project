@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Collections;
 
 public class MovieDatabase {
 	
@@ -95,6 +96,12 @@ public class MovieDatabase {
 			}
 		}
 		return movies;
+	}
+	
+	//Returns the list of movies sorted alphabetically
+	public ArrayList<Movie> sortMovies(){
+		Collections.sort(movieList);
+		return movieList;
 	}
 	
 }
