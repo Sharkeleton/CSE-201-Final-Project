@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<style>
+header {background-color:pink; font-size:18px; padding: 15px 16px; text-align:left;}
+
+.topnav {
+  background-color: gray;
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+section{
+text-align:center;
+}
+
+</style>
+<head>
+<title>Movie</title>
+</head>
+<header>
+<h1>Movie Window</h1>
+<h3>Group 2</h3>
+</header>
+
+
+<div class="topnav">
+  <a href="url">Movie fliter</a>
+</div>
+
+<section>
+		<h1>Movie fliter </h1>
+		<p>Thie option lets the user to enter the requirement of the movie below.</p>
+		
+		<label for="Red">Title</label>
+		<input type="text" name="Red"   id="Red" onchange="rgbcolor()"><br><br>
+		<label for="Green">Year</label>
+		<input type="text" name="Green"  id="Green" onchange="rgbcolor()"><br><br>
+		<label for="Blue">Genre</label>
+		<input type="text" name="Blue"   id="Blue" onchange="rgbcolor()"><br><br>
+		 <input type="submit" value="Submit">		
+		<p>"You Jump, I Jump" - Titanic</p>
+	</section>
+
+
+</body>
+
+
+</html>
