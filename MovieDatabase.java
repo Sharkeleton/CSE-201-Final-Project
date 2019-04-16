@@ -3,6 +3,7 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Collections;
+import java.util.List;
 
 public class MovieDatabase {
 	
