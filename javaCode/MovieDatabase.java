@@ -62,6 +62,10 @@ public class MovieDatabase {
 		movieList.add(m);
 	}
 	
+	public void addMovie(String name) throws FileNotFoundException {
+		loadData(name);
+	}
+	
 	// Returns a movie by its ID
 	public Movie getMovieById(int id) {
 		Movie mov = null;
