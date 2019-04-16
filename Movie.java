@@ -6,6 +6,8 @@ public class Movie implements Comparable {
 	private String title;
 	private int year;
 	private String genre;
+	private ArrayList<Comment> comments = new ArrayList<Comment>();
+
 
 	// Constructors ----------------------------------------------------------
 	
