@@ -8,7 +8,6 @@ public class Movie implements Comparable {
 	private String genre;
 	private ArrayList<Comment> comments = new ArrayList<Comment>();
 
-
 	// Constructors ----------------------------------------------------------
 	
 	// Constructor for creating a movie
@@ -41,6 +40,10 @@ public class Movie implements Comparable {
 		return genre;
 	}
 	
+	public ArrayList<Comment> getComments() {
+		return comments;
+	}
+	
 	// toString method
 	public String toString() {
 		return "Movie [title=" + title + ", year=" + year + ", genre=" + genre + "]";
@@ -48,8 +51,11 @@ public class Movie implements Comparable {
 
 	@Override
 	public int compareTo(Object m) {
-		// TODO Auto-generated method stub
 		return toString().compareTo(m.toString());
+	}
+
+	public void addComment(String com, User user) {
+		comments.add(new Comment(com, user));
 	}
 	
 }
