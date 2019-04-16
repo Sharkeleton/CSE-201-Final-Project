@@ -1,18 +1,66 @@
-import java.io.FileNotFoundException;
-import java.util.Collections;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
-public class Tester {
+public class User {
+	
+private String firstName;
+private String lastName;
+private String userName;
+private String password;
+private FileWriter writer = new FileWriter("Users.txt");
+private BufferedWriter out = new BufferedWriter(writer);
+private Scanner in = new Scanner(new File("Users.txt"));
 
-	public static void main(String[] args) throws FileNotFoundException {
-		Movie m = new Movie(1,"A",2000,"Action");
-		MovieDatabase movies = new MovieDatabase("Movie.txt");
-		movies.addMovie(m);
-		movies.getAllMovies();
-		movies.getMovieById(2);
-		movies.getMoviesByKey("A", "title");
-		movies.getMoviesByKey("Action", "genre");
-		movies.getMoviesByKey("2000", "year");
-		movies.sortMovies();
+	public User(String fN, String lN,String uN,String pS) throws IOException {
+		this.firstName = fN;
+		this.lastName = lN;
+		this.userName = uN;
+		this.password = pS;
+		loadUser();
+	}
+
+	private void loadUser() throws IOException {
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public void addComment(MovieDatabase m, int id, String com) {
+		m.getMovieById(id).addComment(com, this);
+	}
+
+	@Override
+	public String toString() {
+		return "User [firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password="
+				+ password + "]";
 	}
 
 }
