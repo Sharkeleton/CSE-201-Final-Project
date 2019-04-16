@@ -1,0 +1,101 @@
+﻿id	title	year	genre
+1	Limelight	2001	Comedy|Drama|Romance
+2	Bionicle: The Legend Reborn	2006	Action|Adventure|Animation|Sci-Fi
+3	Comrades: Almost a Love Story (Tian mi mi)	2003	Drama|Romance
+4	Misérables, Les	2002	Drama|Musical|Romance|IMAX
+5	In Love and War	1993	Romance|War
+6	Mount Head (Atama yama)	2012	Animation|Comedy|Drama|Fantasy
+7	Enemy of the People, An	2007	Drama
+8	To the Limit (Am Limit)	2004	Documentary
+9	Jenny	2007	Drama
+10	Teen Spirit	1994	Comedy|Drama|Fantasy
+11	Brown Bunny, The	2000	Drama
+12	2 Days in the Valley	2010	Crime|Film-Noir
+13	Amityville Curse, The	2012	Horror
+14	Crossover	1990	Action|Drama
+15	Pinocchio	2001	Animation|Children|Fantasy|Musical
+16	Knockout	1988	Action|Drama
+17	Crush, The	2005	Thriller
+18	Cat-Women of the Moon (a.k.a. Rocket to the Moon)	2002	Adventure|Sci-Fi
+19	Heartbeeps	2010	Comedy|Sci-Fi
+20	Phantom Carriage, The (Körkarlen)	2000	Drama
+21	Advertising and the End of the World	2013	Documentary
+22	Madeline	1995	Children|Comedy
+23	Swan Princess, The	1996	Animation|Children
+24	Dear Wendy	1988	Drama
+25	Children of Invention	2008	Drama
+26	Ah, Wilderness!	1992	Comedy|Drama
+27	Oil, the Baby and the Transylvanians, The (Pruncul, petrolul si Ardelenii)	2009	Comedy|Western
+28	Ponyo (Gake no ue no Ponyo)	1988	Adventure|Animation|Children|Fantasy
+29	Above the Law	2012	Action|Crime|Drama
+30	I Married a Witch	2009	Comedy|Fantasy|Romance
+31	Henry IV, Part I (First Part of King Henry the Fourth, with the Life and Death of Henry Surnamed Hotspur, The)	1999	Drama
+32	No Logo	1993	Documentary
+33	Pursuit of Happyness, The	2007	Drama
+34	Much Ado About Nothing	2012	Comedy|Drama|Romance
+35	Holiday (Jour de fête)	2010	Comedy
+36	Wanda	2008	Drama
+37	Lone Wolf McQuade	1987	Action
+38	Spring Breakers	1994	Comedy|Crime|Drama
+39	Valley Girl	1994	Comedy|Romance
+40	Fool There Was, A	2002	Drama
+41	The Italian Connection	2008	Crime|Drama
+42	Goodbye to Language 3D	1993	Drama
+43	Ornamental Hairpin (Kanzashi)	2004	Drama
+44	Man There Was, A (Terje Vigen)	2000	Drama
+45	Dog's Breakfast, A	2010	Comedy
+46	Milwaukee, Minnesota	2004	Drama
+47	Surfwise	2009	Documentary
+48	Cuba	2010	Action|Adventure|War
+49	Confidence Girl	2010	Crime|Drama|Thriller
+50	Roll Bounce	1998	Comedy|Drama|Romance
+51	When Marnie Was There	1992	Animation|Drama
+52	Grotesque (Gurotesuku)	1992	Horror|Thriller
+53	Jude the Obscure	2011	Drama
+54	Whole Ten Yards, The	2000	Action|Comedy|Crime
+55	Last Stop 174 (Última Parada 174) 	2007	Crime|Drama|Thriller
+56	Chinaman (Kinamand)	2005	Drama
+57	Sarah Silverman: Jesus Is Magic	2004	Comedy|Musical
+58	Needing You... (Goo naam gwa neui)	2008	Comedy|Romance
+59	Delicatessen	1963	Comedy|Drama|Romance
+60	Master and Margaret, The (Il maestro e Margherita)	2005	Drama|Fantasy|Romance
+61	Heroes for Sale	1997	Drama
+62	When the Bough Breaks	2006	Drama|Thriller
+63	Never Weaken	1999	Comedy|Thriller
+64	Suicide Room	2000	Drama|Thriller
+65	Life and Nothing But (Vie et rien d'autre, La)	2004	Drama
+66	Eyes of Laura Mars	1994	Mystery|Thriller
+67	Conception	1985	Comedy|Romance
+68	City of the Living Dead (a.k.a. Gates of Hell, The) (Paura nella città dei morti viventi)	1999	Horror
+69	Taste of Others, The (Le goût des autres)	1998	Comedy|Drama|Romance
+70	Zerophilia	1996	Comedy|Romance
+71	1971	2004	Documentary
+72	Cherry	1994	Comedy|Drama
+73	Canyon Passage	2002	Action|Romance|Western
+74	Night Shift	2012	Comedy
+75	Life According to Sam	1996	Documentary|Drama
+76	Justin Bieber: Never Say Never	2012	Documentary
+77	Chicago 10	2005	Animation|Documentary
+78	Colder Kind of Death, A	2007	Crime|Drama|Mystery
+79	Erendira	2012	Drama
+80	Hail Mary ('Je vous salue, Marie')	1984	Drama
+81	Double Impact	2007	Action
+82	Separation City	2002	Comedy|Drama|Romance
+83	Joe	1996	Drama
+84	Other Man, The	1991	Drama
+85	In a Town This Size	1993	Documentary
+86	The Land Before Time V: The Mysterious Island	1998	Adventure|Animation|Children
+87	John Doe: Vigilante	1993	Crime|Thriller
+88	Where's Poppa?	2012	Comedy
+89	All the Pretty Horses	1998	Drama|Romance|Western
+90	Big Miracle	2011	Drama|Romance
+91	It Might Get Loud	1998	Documentary
+92	Children of the Secret State	2008	Documentary
+93	Lady in Red, The	1999	Action
+94	More About the Children of Noisy Village (a.k.a. More About the Children of Bullerby Village) (Mer om oss barn i Bullerbyn)	2011	Children
+95	Zincirbozan	1995	Crime|Drama
+96	Waking Sleeping Beauty	1985	Animation|Documentary
+97	Lie, The	2012	Drama
+98	Wise Guys, The (Les grandes gueules)	1984	Comedy|Drama
+99	Iron & Silk	1994	Comedy|Drama
+100	American Psycho	2012	Crime|Horror|Mystery|Thriller
