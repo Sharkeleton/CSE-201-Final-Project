@@ -100,9 +100,8 @@ public class MovieDatabase {
 	}
 	
 	//Returns the list of movies sorted alphabetically
-	public ArrayList<Movie> sortMovies(){
+	public void sortMovies(){
 		Collections.sort(movieList);
-		return movieList;
 	}
 	
 }
