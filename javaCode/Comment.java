@@ -1,25 +1,18 @@
-
 public class Comment {
     
-	private  String username;
-	private String com ;
+	private User user;
+	private String com;
 	
 	
-	public Comment(String username,String comment) {
-		username = this.username;
+	public Comment(String comment, User user) {
+		user = this.user;
 		comment = this.com;
 	}
 
 
-	public String getUsername() {
-		return username;
+	public User getUser() {
+		return user;
 	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
 
 	public String getCom() {
 		return com;
@@ -28,6 +21,12 @@ public class Comment {
 
 	public void setCom(String com) {
 		this.com = com;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Comment [com=" + com + "]";
 	}
 	
 	
