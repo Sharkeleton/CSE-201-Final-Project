@@ -1,7 +1,8 @@
-import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class User {
@@ -10,9 +11,7 @@ private String firstName;
 private String lastName;
 private String userName;
 private String password;
-private FileWriter writer = new FileWriter("Users.txt");
-private BufferedWriter out = new BufferedWriter(writer);
-private Scanner in = new Scanner(new File("Users.txt"));
+private static int userID = 1;
 
 	public User(String fN, String lN,String uN,String pS) throws IOException {
 		this.firstName = fN;
@@ -23,6 +22,11 @@ private Scanner in = new Scanner(new File("Users.txt"));
 	}
 
 	private void loadUser() throws IOException {
+		File log = new File("Users.txt");
+		PrintWriter out = new PrintWriter(new FileWriter(log , true));
+		out.append(userID + "\t" + firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\n");
+		out.close();
+		++ userID;
 	}
 
 	public String getFirstName() {
