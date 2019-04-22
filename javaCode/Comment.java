@@ -1,17 +1,17 @@
 public class Comment {
     
-	private User user;
+	private Person person;
 	private String com;
 	
 	
-	public Comment(String comment, User user) {
-		user = this.user;
+	public Comment(String comment, Person person) {
+		person = this.person;
 		comment = this.com;
 	}
 
 
-	public User getUser() {
-		return user;
+	public User getPerson() {
+		return person;
 	}
 
 	public String getCom() {
