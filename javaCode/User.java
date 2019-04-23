@@ -13,7 +13,6 @@ public class User {
     private String password;
     private int myID;
     private boolean isMod = false;
-    private static int userID = 1;
     private static String modPassword = "abc";
 
     public User(String fN, String lN, String uN, String pS, String modCheck) throws IOException {
@@ -21,8 +20,6 @@ public class User {
         this.lastName = lN;
         this.userName = uN;
         this.password = pS;
-        myID = userID;
-        ++userID;
         if (modCheck.equals(modPassword)) {
             isMod = true;
         }
@@ -31,9 +28,9 @@ public class User {
     }
 
     private void loadUser() throws IOException {
-        File log = new File("Users.txt");
+        File log = new File("user.txt");
         PrintWriter out = new PrintWriter(new FileWriter(log, true));
-        out.append(userID + "\t" + firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\n");
+        out.append(firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\t" + isMod + "\n");
         out.close();
     }
 
@@ -65,7 +62,7 @@ public class User {
         this.password = password;
     }
 
-    public void addComment(MovieDatabase m, int id, Comment com) {
+    public void addComment(MovieDatabase m, Comment com) {
         m.getNeedApprovedComments().add(com);
     }
 
@@ -79,6 +76,7 @@ public class User {
         }
         // approving movie code
         m.addMovie(m.getNeedApprovedMovies().get(movieID));
+        m.getNeedApprovedMovies().remove(movieID);
         return true;
     }
 
@@ -89,6 +87,7 @@ public class User {
         // approving comment code
         Comment newCom = m.getNeedApprovedComments().get(commentID);
         m.getMovieList().get(newCom.getMovieID()).addComment(newCom);
+        m.getNeedApprovedComments().remove(commentID);
         return true;
     }
 
