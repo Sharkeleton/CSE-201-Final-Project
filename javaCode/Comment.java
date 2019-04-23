@@ -24,6 +24,9 @@ public class Comment {
 		return com;
 	}
 
+	public int getMovieID() {
+	    return movieID;
+	}
 
 	public void setCom(String com) {
 		this.com = com;
