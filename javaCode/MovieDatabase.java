@@ -23,7 +23,7 @@ public class MovieDatabase {
 
     // Constructor for a Movie Database from a text file
     public MovieDatabase(String filePath) throws FileNotFoundException {
-        loadData(filePath);
+        loadMovieData(filePath);
     }
 
     // Default constructor for a Movie database
@@ -33,7 +33,7 @@ public class MovieDatabase {
     // Methods ---------------------------------------------------------------
 
     // Loads data from a file into a Movie database
-    private void loadData(String filePath) throws FileNotFoundException {
+    private void loadMovieData(String filePath) throws FileNotFoundException {
         // Creating the file and scanner to read from the file (skips first line)
         File file = new File(filePath);
         Scanner sc = new Scanner(file);
@@ -76,7 +76,7 @@ public class MovieDatabase {
     }
 
     public void addMovie(String name) throws FileNotFoundException {
-        loadData(name);
+        loadMovieData(name);
     }
 
     // Returns a movie by its ID
@@ -119,6 +119,11 @@ public class MovieDatabase {
     // Returns the list of movies sorted alphabetically
     public void sortMovies() {
         Collections.sort(movieList);
+    }
+
+    public void addUsers(String string) {
+        // TODO Auto-generated method stub
+        
     }
 
 }
