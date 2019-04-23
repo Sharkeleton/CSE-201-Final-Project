@@ -54,8 +54,8 @@ public class Movie implements Comparable {
 		return toString().compareTo(m.toString());
 	}
 
-	public void addComment(String com, User user) {
-		comments.add(new Comment(com, user));
+	public void addComment(Comment com) {
+		comments.add(com);
 	}
 	
 }
