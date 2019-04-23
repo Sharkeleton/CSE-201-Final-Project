@@ -93,6 +93,8 @@ private Scanner in = new Scanner(new File("Users.txt"));
             return false;
         }
         // approving comment code
+        Comment newCom = m.getNeedApprovedComments().get(commentID);
+        m.getMovieList().get(newCom.getMovieID()).addComment(newCom);
         return true;
     }
 
