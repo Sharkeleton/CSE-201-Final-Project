@@ -11,6 +11,8 @@ public class MovieDatabase {
 	
 	// List to hold the current movies of the database
 	private ArrayList<Movie> movieList = new ArrayList<Movie>();
+	private ArrayList<Movie> needApprovedMovieList = new ArrayList<Movie>();
+	private ArrayList<Comment> needApprovedComments = new ArrayList<Comment>();
 	
 	// Constructors ----------------------------------------------------------
 	
@@ -57,6 +59,17 @@ public class MovieDatabase {
 		}
 	}
 	
+	public ArrayList<Movie> getMovieList() {
+	    return movieList;
+	}
+	
+	public ArrayList<Movie> getNeedApprovedMovies() {
+	    return needApprovedMovieList;
+	}
+	
+	public ArrayList<Comment> getNeedApprovedComments() {
+	    return needApprovedComments;
+	}
 	// Adds a movie to the database
 	public void addMovie(Movie m) {
 		movieList.add(m);
@@ -109,4 +122,3 @@ public class MovieDatabase {
 	}
 	
 }
-
