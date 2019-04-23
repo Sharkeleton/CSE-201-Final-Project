@@ -11,6 +11,7 @@ public class MovieDatabase {
 
     // List to hold the current movies of the database
     private ArrayList<Movie> movieList = new ArrayList<Movie>();
+    private ArrayList<User> users = new ArrayList<User>();
     private ArrayList<Movie> needApprovedMovieList = new ArrayList<Movie>();
     private ArrayList<Comment> needApprovedComments = new ArrayList<Comment>();
 
@@ -33,7 +34,7 @@ public class MovieDatabase {
     // Methods ---------------------------------------------------------------
 
     // Loads data from a file into a Movie database
-    private void loadMovieData(String filePath) throws FileNotFoundException {
+    public void loadMovieData(String filePath) throws FileNotFoundException {
         // Creating the file and scanner to read from the file (skips first line)
         File file = new File(filePath);
         Scanner sc = new Scanner(file);
@@ -49,6 +50,10 @@ public class MovieDatabase {
             movieList.add(mov);
         }
         sc.close();
+    }
+    
+    public void loadUsersData(String filePath) {
+        
     }
 
     // Returns all movies in the database
@@ -74,11 +79,6 @@ public class MovieDatabase {
     public void addMovie(Movie m) {
         movieList.add(m);
     }
-
-    public void addMovie(String name) throws FileNotFoundException {
-        loadMovieData(name);
-    }
-
     // Returns a movie by its ID
     public Movie getMovieById(int id) {
         Movie mov = null;
@@ -119,11 +119,6 @@ public class MovieDatabase {
     // Returns the list of movies sorted alphabetically
     public void sortMovies() {
         Collections.sort(movieList);
-    }
-
-    public void addUsers(String string) {
-        // TODO Auto-generated method stub
-        
     }
 
 }
