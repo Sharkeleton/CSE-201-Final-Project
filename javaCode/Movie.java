@@ -1,61 +1,62 @@
 import java.util.ArrayList;
 
 public class Movie implements Comparable {
-	// Private variables -----------------------------------------------------
-	private int movieID;
-	private String title;
-	private int year;
-	private String genre;
-	private ArrayList<Comment> comments = new ArrayList<Comment>();
+    // Private variables -----------------------------------------------------
+    private int movieID;
+    private String title;
+    private int year;
+    private String genre;
+    private ArrayList<Comment> comments = new ArrayList<Comment>();
 
-	// Constructors ----------------------------------------------------------
-	
-	// Constructor for creating a movie
-	public Movie(int movieID, String title, int year, String genre) {
-		this.movieID = movieID;
-		this.title = title;
-		this.year = year;
-		this.genre = genre;
-	}
-	
-	// Default constructor where all values are null/default
-	public Movie() {}
+    // Constructors ----------------------------------------------------------
 
-	// Methods ---------------------------------------------------------------
-	
-	// GETTER methods
-	public int getMovieID() {
-		return movieID;
-	}
+    // Constructor for creating a movie
+    public Movie(int movieID, String title, int year, String genre) {
+        this.movieID = movieID;
+        this.title = title;
+        this.year = year;
+        this.genre = genre;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    // Default constructor where all values are null/default
+    public Movie() {
+    }
 
-	public int getYear() {
-		return year;
-	}
+    // Methods ---------------------------------------------------------------
 
-	public String getGenre() {
-		return genre;
-	}
-	
-	public ArrayList<Comment> getComments() {
-		return comments;
-	}
-	
-	// toString method
-	public String toString() {
-		return "Movie [title=" + title + ", year=" + year + ", genre=" + genre + "]";
-	}
+    // GETTER methods
+    public int getMovieID() {
+        return movieID;
+    }
 
-	@Override
-	public int compareTo(Object m) {
-		return toString().compareTo(m.toString());
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void addComment(Comment com) {
-		comments.add(com);
-	}
-	
+    public int getYear() {
+        return year;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
+    // toString method
+    public String toString() {
+        return "Movie [title=" + title + ", year=" + year + ", genre=" + genre + "]";
+    }
+
+    @Override
+    public int compareTo(Object m) {
+        return toString().compareTo(m.toString());
+    }
+
+    public void addComment(Comment com) {
+        comments.add(com);
+    }
+
 }
