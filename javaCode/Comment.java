@@ -2,11 +2,17 @@ public class Comment {
     
 	private User user;
 	private String com;
+	private int myComID;
+	private int movieID;
+	private static int commentID = 1;
 	
 	
-	public Comment(String comment, User user) {
+	public Comment(String comment, User user, int movieID) {
 		user = this.user;
 		comment = this.com;
+		movieID = this.movieID;
+		myComID = commentID;
+		++commentID;
 	}
 
 
