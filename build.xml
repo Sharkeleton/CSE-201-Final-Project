@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Apr 24, 2019 12:53:38 PM                                                        
+
+     MovieStore    
+     description
+                   
+     Bennett                                                                
+     ====================================================================== -->
+<project name="default" default="run">
+    <description>
+            description
+    </description>
+
+    <!-- ================================= 
+          target: default              
+         ================================= -->
+    <target name="run" depends="compile" description="description">
+        <java classname = "default.Movie">
+        	<classpath path="staging">
+        	</classpath>
+        </java>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: depends                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compile">
+    	<javac srcdir="./src"
+         destdir="staging"
+         includeantruntime="false"
+	/>
+    </target>
+
+</project>
