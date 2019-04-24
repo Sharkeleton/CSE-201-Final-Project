@@ -51,9 +51,9 @@ public class MovieDatabase {
         }
         sc.close();
     }
-    
+
     public void loadUsersData(String filePath) {
-        
+
     }
 
     // Returns all movies in the database
@@ -79,6 +79,7 @@ public class MovieDatabase {
     public void addMovie(Movie m) {
         movieList.add(m);
     }
+
     // Returns a movie by its ID
     public Movie getMovieById(int id) {
         Movie mov = null;
@@ -119,6 +120,17 @@ public class MovieDatabase {
     // Returns the list of movies sorted alphabetically
     public void sortMovies() {
         Collections.sort(movieList);
+    }
+
+    public boolean checkUserPass(String u, String p, String filePath) throws FileNotFoundException {
+        Scanner scn = new Scanner(new File(filePath));
+        while (scn.hasNextLine()) {
+            String line = scn.nextLine();
+            if (line.contains(u) && line.contains(p)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
