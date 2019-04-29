@@ -1,39 +1,36 @@
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
-import java.awt.Button;
-import java.awt.Panel;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
-import java.awt.List;
 import javax.swing.JList;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Collections;
 
 
-public class App {
+public class App extends JFrame{
 
-	private JFrame frmMovieshareStore;
+	//private JFrame frmMovieshareStore;
 	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	String search = "title";
+	static boolean userLogin = false;
+	static boolean modLogin = false;
 
 
 	//public static DefaultListModel<String> titles = new DefaultListModel<>();
@@ -56,8 +53,8 @@ public class App {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					App window = new App();
-					window.frmMovieshareStore.setVisible(true);
+					App window = new App(userLogin, modLogin);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -69,8 +66,10 @@ public class App {
 	 * Create the application.
 	 * @throws FileNotFoundException 
 	 */
-	public App() throws FileNotFoundException {
+	public App(boolean userLog, boolean modLog) throws FileNotFoundException {
 		initialize();
+		userLogin = userLog;
+		modLogin = modLog;
 	}
 
 	/**
@@ -79,51 +78,98 @@ public class App {
 	 */
 	private void initialize() throws FileNotFoundException {
 		
-		frmMovieshareStore = new JFrame();
+		/*frmMovieshareStore = new JFrame();
 		frmMovieshareStore.setTitle("MovieShare Store");
 		frmMovieshareStore.setBounds(100, 100, 770, 719);
 		frmMovieshareStore.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmMovieshareStore.getContentPane().setLayout(null);
+		frmMovieshareStore.getContentPane().setLayout(null);*/
 		
-		DefaultListModel<String> titles = new DefaultListModel<>();
+		//frmMovieshareStore = new JFrame();
+		setTitle("MovieShare Store");
+		setBounds(100, 100, 770, 719);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
+			
+		DefaultListModel<Movie> titles = new DefaultListModel<>();
 		MovieDatabase movies = new MovieDatabase("Movie.txt");
-		for(Movie m : movies.getAllMovies()) {
-			titles.addElement(m.getTitle());
+		for(Movie m : movies.sortMovies()) {
+			titles.addElement(m);
 		}
 		
 		JLabel lblMovieshareStore = new JLabel("MovieShare Store");
 		lblMovieshareStore.setFont(new Font("Eras Medium ITC", Font.BOLD, 40));
 		lblMovieshareStore.setBounds(15, 0, 392, 71);
-		frmMovieshareStore.getContentPane().add(lblMovieshareStore);
+		//frmMovieshareStore.getContentPane().add(lblMovieshareStore);
+		getContentPane().add(lblMovieshareStore);
+		
+		JRadioButton rdbtnTitle = new JRadioButton("Title");
+		buttonGroup.add(rdbtnTitle);
+		rdbtnTitle.setSelected(true);
+		rdbtnTitle.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				search = "title";
+			}
+		});
+		rdbtnTitle.setBounds(457, 63, 69, 29);
+		//frmMovieshareStore.getContentPane().add(rdbtnTitle);
+		getContentPane().add(rdbtnTitle);
+		
+		JRadioButton rdbtnGenre = new JRadioButton("Genre");
+		buttonGroup.add(rdbtnGenre);
+		rdbtnGenre.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				search = "genre";
+			}
+		});
+		rdbtnGenre.setBounds(533, 63, 75, 29);
+		//frmMovieshareStore.getContentPane().add(rdbtnGenre);
+		getContentPane().add(rdbtnGenre);
+		
+		JRadioButton rdbtnYear = new JRadioButton("Year");
+		buttonGroup.add(rdbtnYear);
+		rdbtnYear.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				search = "year";
+			}
+		});
+		rdbtnYear.setBounds(615, 63, 75, 29);
+		//frmMovieshareStore.getContentPane().add(rdbtnYear);
+		getContentPane().add(rdbtnYear);
 		
 		JLabel lblSearch = new JLabel("Search:");
 		lblSearch.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		lblSearch.setBounds(406, 31, 69, 20);
-		frmMovieshareStore.getContentPane().add(lblSearch);
+		//frmMovieshareStore.getContentPane().add(lblSearch);
+		getContentPane().add(lblSearch);
 		
 		textField = new JTextField();
 		textField.setBounds(466, 29, 211, 26);
-		frmMovieshareStore.getContentPane().add(textField);
+		//frmMovieshareStore.getContentPane().add(textField);
+		getContentPane().add(textField);
+
 		textField.setColumns(10);
 		
 		JButton btnGo = new JButton("Go");
+		btnGo.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				ArrayList<Movie> searches = movies.getMoviesByKey(textField.getText(), search);
+				titles.clear();
+				for(Movie m : searches) {
+					titles.addElement(m);
+				}
+			}
+		});
 		btnGo.setBounds(680, 28, 53, 29);
-		frmMovieshareStore.getContentPane().add(btnGo);
-		
-		JRadioButton rdbtnTitle = new JRadioButton("Title");
-		buttonGroup.add(rdbtnTitle);
-		rdbtnTitle.setBounds(457, 63, 69, 29);
-		frmMovieshareStore.getContentPane().add(rdbtnTitle);
-		
-		JRadioButton rdbtnGenre = new JRadioButton("Genre");
-		buttonGroup.add(rdbtnGenre);
-		rdbtnGenre.setBounds(533, 63, 75, 29);
-		frmMovieshareStore.getContentPane().add(rdbtnGenre);
-		
-		JRadioButton rdbtnYear = new JRadioButton("Year");
-		buttonGroup.add(rdbtnYear);
-		rdbtnYear.setBounds(615, 63, 75, 29);
-		frmMovieshareStore.getContentPane().add(rdbtnYear);
+		//frmMovieshareStore.getContentPane().add(btnGo);
+		getContentPane().add(btnGo);
 		
 		JButton btnAction = new JButton("Action");
 		btnAction.addActionListener(new ActionListener()
@@ -133,16 +179,18 @@ public class App {
 				ArrayList<Movie> actions = movies.getMoviesByKey("Action", "genre");
 				titles.clear();
 				for(Movie m : actions) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnAction.setBounds(15, 117, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnAction);
+		//frmMovieshareStore.getContentPane().add(btnAction);
+		getContentPane().add(btnAction);
 		
 		JLabel lblGenre = new JLabel("Genre: ");
 		lblGenre.setBounds(15, 87, 69, 20);
-		frmMovieshareStore.getContentPane().add(lblGenre);
+		//frmMovieshareStore.getContentPane().add(lblGenre);
+		getContentPane().add(lblGenre);
 		
 		JButton btnAdventure = new JButton("Adventure");
 		btnAdventure.addActionListener(new ActionListener()
@@ -152,12 +200,13 @@ public class App {
 				ArrayList<Movie> adventures = movies.getMoviesByKey("Adventure", "genre");
 				titles.clear();
 				for(Movie m : adventures) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnAdventure.setBounds(15, 149, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnAdventure);
+		//frmMovieshareStore.getContentPane().add(btnAdventure);
+		getContentPane().add(btnAdventure);
 		
 		JButton btnAnimation = new JButton("Animation");
 		btnAnimation.addActionListener(new ActionListener()
@@ -167,12 +216,13 @@ public class App {
 				ArrayList<Movie> animations = movies.getMoviesByKey("Animation", "genre");
 				titles.clear();
 				for(Movie m : animations) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnAnimation.setBounds(15, 181, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnAnimation);
+		//frmMovieshareStore.getContentPane().add(btnAnimation);
+		getContentPane().add(btnAnimation);
 		
 		JButton btnComedy = new JButton("Comedy");
 		btnComedy.addActionListener(new ActionListener()
@@ -182,12 +232,13 @@ public class App {
 				ArrayList<Movie> comedies = movies.getMoviesByKey("Comedy", "genre");
 				titles.clear();
 				for(Movie m : comedies) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnComedy.setBounds(15, 214, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnComedy);
+		//frmMovieshareStore.getContentPane().add(btnComedy);
+		getContentPane().add(btnComedy);
 		
 		JButton btnDrama = new JButton("Drama");
 		btnDrama.addActionListener(new ActionListener()
@@ -197,17 +248,27 @@ public class App {
 				ArrayList<Movie> dramas = movies.getMoviesByKey("Drama", "genre");
 				titles.clear();
 				for(Movie m : dramas) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 
 		btnDrama.setBounds(15, 248, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnDrama);
+		//frmMovieshareStore.getContentPane().add(btnDrama);
+		getContentPane().add(btnDrama);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				Login page = new Login();
+				page.setVisible(true);
+			}
+		});
 		btnLogin.setBounds(15, 618, 115, 29);
-		frmMovieshareStore.getContentPane().add(btnLogin);
+		//frmMovieshareStore.getContentPane().add(btnLogin);
+		getContentPane().add(btnLogin);
 		
 		JButton btnDocumentary = new JButton("Documentary");
 		btnDocumentary.addActionListener(new ActionListener()
@@ -217,12 +278,13 @@ public class App {
 				ArrayList<Movie> documentaries = movies.getMoviesByKey("Documentary", "genre");
 				titles.clear();
 				for(Movie m : documentaries) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnDocumentary.setBounds(15, 282, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnDocumentary);
+		//frmMovieshareStore.getContentPane().add(btnDocumentary);
+		getContentPane().add(btnDocumentary);
 		
 		JButton btnHorror = new JButton("Horror");
 		btnHorror.addActionListener(new ActionListener()
@@ -232,12 +294,13 @@ public class App {
 				ArrayList<Movie> horrors = movies.getMoviesByKey("Horror", "genre");
 				titles.clear();
 				for(Movie m : horrors) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnHorror.setBounds(15, 315, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnHorror);
+		//frmMovieshareStore.getContentPane().add(btnHorror);
+		getContentPane().add(btnHorror);
 		
 		JButton btnRomance = new JButton("Romance");
 		btnRomance.addActionListener(new ActionListener()
@@ -247,12 +310,13 @@ public class App {
 				ArrayList<Movie> romances = movies.getMoviesByKey("Romance", "genre");
 				titles.clear();
 				for(Movie m : romances) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnRomance.setBounds(15, 350, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnRomance);
+		//frmMovieshareStore.getContentPane().add(btnRomance);
+		getContentPane().add(btnRomance);
 		
 		JButton btnThriller = new JButton("Thriller");
 		btnThriller.addActionListener(new ActionListener()
@@ -262,12 +326,13 @@ public class App {
 				ArrayList<Movie> thrillers = movies.getMoviesByKey("Thriller", "genre");
 				titles.clear();
 				for(Movie m : thrillers) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnThriller.setBounds(15, 384, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnThriller);
+		//frmMovieshareStore.getContentPane().add(btnThriller);
+		getContentPane().add(btnThriller);
 		
 		JButton btnScifi = new JButton("Sci-Fi");
 		btnScifi.addActionListener(new ActionListener()
@@ -277,12 +342,13 @@ public class App {
 				ArrayList<Movie> scifis = movies.getMoviesByKey("Sci-Fi", "genre");
 				titles.clear();
 				for(Movie m : scifis) {
-					titles.addElement(m.getTitle());
+					titles.addElement(m);
 				}
 			}
 		});
 		btnScifi.setBounds(15, 420, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnScifi);
+		//frmMovieshareStore.getContentPane().add(btnScifi);
+		getContentPane().add(btnScifi);
 		
 		JButton btnShowAll = new JButton("Show All");
 		btnShowAll.addActionListener(new ActionListener()
@@ -290,23 +356,38 @@ public class App {
 			public void actionPerformed(ActionEvent e)
 			{
 				titles.clear();
-				for(Movie m : movies.getAllMovies()) {
-					titles.addElement(m.getTitle());
+				for(Movie m : movies.getMovieList()) {
+					titles.addElement(m);
 				}			
 			}
 		});
 		btnShowAll.setBounds(15, 454, 127, 29);
-		frmMovieshareStore.getContentPane().add(btnShowAll);
+		//frmMovieshareStore.getContentPane().add(btnShowAll);
+		getContentPane().add(btnShowAll);
 		
 		JScrollPane scrollBar = new JScrollPane();
 		//scrollBar.setBounds(707, 117, 26, 530);
 		scrollBar.setBounds(157, 118, 576, 529);
-		frmMovieshareStore.getContentPane().add(scrollBar);
+		//frmMovieshareStore.getContentPane().add(scrollBar);
+		getContentPane().add(scrollBar);
 		
-		JList<String> list = new JList<String>(titles);
+		JList<Movie> list = new JList<Movie>(titles);
 		list.setBounds(157, 118, 576, 529);
-		frmMovieshareStore.getContentPane().add(list);
+		//frmMovieshareStore.getContentPane().add(list);
+		getContentPane().add(list);
+
 		scrollBar.setViewportView(list);
+		
+		MouseListener mouseListener = new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					Movie selectedItem = (Movie) list.getSelectedValue();
+					MoviePage view = new MoviePage(selectedItem.getTitle(), selectedItem.getGenre(), selectedItem.getYear());
+					view.setVisible(true);
+				}
+			}
+		};
+		list.addMouseListener(mouseListener);
 		
 	}
 }
