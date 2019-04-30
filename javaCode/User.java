@@ -36,27 +36,27 @@ public class User {
             isMod = true;
         }
     }
-    
+
     private void loadUser() throws IOException {
         Scanner scn = new Scanner(new File("user.txt"));
         String userInfo = firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\t" + userCheck;
         boolean inFile = false;
-        while(scn.hasNextLine()) {
+        while (scn.hasNextLine()) {
             String line = scn.nextLine();
-            if(line.equals(userInfo)) {
+            if (line.equals(userInfo)) {
                 System.out.println("hi");
                 inFile = true;
                 return;
-                
+
             }
         }
-        
+
         scn.close();
-        
-        if(inFile) {
+
+        if (inFile) {
             return;
         }
-        
+
         File log = new File("user.txt");
         PrintWriter out = new PrintWriter(new FileWriter(log, true));
         out.append(userInfo + "\n");
@@ -90,15 +90,15 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     public void setUserCheck(String userCheck) {
         this.userCheck = userCheck;
     }
-    
+
     public boolean isMod() {
         return isMod;
     }
-    
+
     public boolean isAdmin() {
         return isAdmin;
     }
