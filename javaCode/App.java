@@ -1,6 +1,4 @@
 
-
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -299,7 +297,8 @@ public class App extends JFrame{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					
+					AddMovie page = new AddMovie();
+					page.setVisible(true);
 				}
 			});
 			btnAddMovie.setBounds(15, 573, 115, 29);
