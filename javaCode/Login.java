@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -18,7 +19,7 @@ public class Login extends JFrame{
 	//private JFrame frmLogin;
 	private JTextField textField;
 	private JPasswordField passwordField;
-	private ArrayList<User> users = new ArrayList<User>();
+	static ArrayList<User> users;
 
 	/**
 	 * Launch the application.
@@ -70,6 +71,11 @@ public class Login extends JFrame{
 		passwordField.setBounds(153, 118, 217, 26);
 		getContentPane().add(passwordField);
 		
+		JLabel lblUserLogin = new JLabel("Login");
+		lblUserLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserLogin.setBounds(15, 16, 398, 20);
+		getContentPane().add(lblUserLogin);
+		
 		JButton btnLogin = new JButton("Login");
 		
 		btnLogin.setBounds(153, 179, 115, 29);
@@ -78,33 +84,37 @@ public class Login extends JFrame{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-//				File file = new File("user.txt");
-//		        Scanner sc;
-//				try {
-//					sc = new Scanner(file);
-//			        while (sc.hasNextLine()) {
-//			            String curLine = sc.nextLine();
-//			            String[] splitted = curLine.split("\t");
-//			            User use;
-//						try {
-//							use = new User(splitted[0], // movieID
-//							        splitted[1], // title
-//							        splitted[2], // year
-//							        splitted[3],
-//							        splitted[4]// genre
-//							);
-//							users.add(use);
-//						} catch (IOException e1) {
-//							// TODO Auto-generated catch block
-//							e1.printStackTrace();
-//						}
-//			        }
-//			        sc.close();
-//			        System.out.println(users);
-//				} catch (FileNotFoundException e2) {
-//					// TODO Auto-generated catch block
-//					e2.printStackTrace();
-//				}
+				try {
+					MovieDatabase movies = new MovieDatabase("Movie.txt");
+					try {
+						if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").isAdmin()) {
+							App home = new App(true,true,true);
+							home.setVisible(true);
+							dispose();
+						}
+						else if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").isMod()) {
+							App home = new App(true,true,false);
+							home.setVisible(true);
+							dispose();
+						}
+						else if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").equals(null)) {
+							lblUserLogin.setText("Invalid username/password.");
+						}
+						else {
+							App home = new App(true,false,false);
+							home.setVisible(true);
+							dispose();
+						}
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		
@@ -118,6 +128,7 @@ public class Login extends JFrame{
 				try {
 					page = new Register();
 					page.setVisible(true);
+					dispose();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -125,9 +136,7 @@ public class Login extends JFrame{
 			}
 		});
 		getContentPane().add(btnRegister);
-		
-		JLabel lblUserLogin = new JLabel("User Login");
-		lblUserLogin.setBounds(172, 16, 83, 20);
-		getContentPane().add(lblUserLogin);
+	
 	}
 }
+
