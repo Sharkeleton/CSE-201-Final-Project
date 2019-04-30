@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,29 +39,26 @@ public class User {
     }
 
     private void loadUser() throws IOException {
-        Scanner scn = new Scanner(new File("user.txt"));
         String userInfo = firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\t" + userCheck;
+        if (isNewUser(userInfo)) {
+            File log = new File("user.txt");
+            PrintWriter out = new PrintWriter(new FileWriter(log, true));
+            out.append(userInfo + "\n");
+            out.close();
+        }
+    }
+
+    private boolean isNewUser(String userInfo) throws FileNotFoundException {
+        Scanner scn = new Scanner(new File("user.txt"));
         boolean inFile = false;
         while (scn.hasNextLine()) {
             String line = scn.nextLine();
             if (line.equals(userInfo)) {
-                System.out.println("hi");
-                inFile = true;
-                return;
-
+                return false;
             }
         }
-
         scn.close();
-
-        if (inFile) {
-            return;
-        }
-
-        File log = new File("user.txt");
-        PrintWriter out = new PrintWriter(new FileWriter(log, true));
-        out.append(userInfo + "\n");
-        out.close();
+        return true;
     }
 
     public String getFirstName() {
