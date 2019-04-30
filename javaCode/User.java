@@ -11,26 +11,37 @@ public class User {
     private String lastName;
     private String userName;
     private String password;
-    private int myID;
+    private String userCheck;
     private boolean isMod = false;
+    private boolean isAdmin = false;
     private static String modPassword = "abc";
+    private static String adminPassword = "cba";
 
-    public User(String fN, String lN, String uN, String pS, String modCheck) throws IOException {
+    public User(String fN, String lN, String uN, String pS, String userCheck) throws IOException {
         this.firstName = fN;
         this.lastName = lN;
         this.userName = uN;
         this.password = pS;
-        if (modCheck.equals(modPassword)) {
+        this.userCheck = userCheck;
+        checkUser();
+        loadUser();
+    }
+
+    public void checkUser() {
+        if (userCheck.equals(modPassword)) {
+            isMod = true;
+            return;
+        }
+        if (userCheck.equals(adminPassword)) {
+            isAdmin = true;
             isMod = true;
         }
-
-        loadUser();
     }
 
     private void loadUser() throws IOException {
         File log = new File("user.txt");
         PrintWriter out = new PrintWriter(new FileWriter(log, true));
-        out.append(firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\t" + isMod + "\n");
+        out.append(firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\t" + userCheck + "\n");
         out.close();
     }
 
@@ -61,6 +72,18 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    public void setUserCheck(String userCheck) {
+        this.userCheck = userCheck;
+    }
+    
+    public boolean isMod() {
+        return isMod;
+    }
+    
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 
     public void addComment(MovieDatabase m, Comment com) {
         m.getNeedApprovedComments().add(com);
@@ -71,9 +94,6 @@ public class User {
     }
 
     public boolean approveMovie(MovieDatabase m, int movieID) {
-        if (!isMod) {
-            return false;
-        }
         // approving movie code
         m.addMovie(m.getNeedApprovedMovies().get(movieID));
         m.getNeedApprovedMovies().remove(movieID);
@@ -81,9 +101,6 @@ public class User {
     }
 
     public boolean approveComment(MovieDatabase m, int commentID) {
-        if (!isMod) {
-            return false;
-        }
         // approving comment code
         Comment newCom = m.getNeedApprovedComments().get(commentID);
         m.getMovieList().get(newCom.getMovieID()).addComment(newCom);
@@ -94,7 +111,7 @@ public class User {
     @Override
     public String toString() {
         return "User [firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password="
-                + password + "]";
+                + password + ", userCheck=" + userCheck + "]";
     }
 
 }
