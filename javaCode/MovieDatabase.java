@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -122,15 +123,22 @@ public class MovieDatabase {
         Collections.sort(movieList);
     }
 
-    public boolean checkUserPass(String u, String p, String filePath) throws FileNotFoundException {
+    public User checkUserPass(String u, String p, String filePath) throws IOException {
+        User user = null;
         Scanner scn = new Scanner(new File(filePath));
         while (scn.hasNextLine()) {
             String line = scn.nextLine();
-            if (line.contains(u) && line.contains(p)) {
-                return true;
+            if (line.contains("\t" + u + "\t")) {
+                int passIndex = line.indexOf(u) + u.length() + 1;
+                String passCheck = line.substring(passIndex, line.indexOf("\t", passIndex));
+                if(passCheck.equals(p)) {
+                    String[] words = line.split("\\s+");
+                    User correctUser = new User(words[0], words[1], words[2], words[3], words[4]);
+                    correctUser.checkUser();
+                    return correctUser;
+                }
             }
         }
-        return false;
+        return user;
     }
-
 }
