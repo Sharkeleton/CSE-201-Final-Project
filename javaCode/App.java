@@ -1,5 +1,6 @@
 
 
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -21,6 +22,7 @@ import javax.swing.JList;
 
 import java.util.ArrayList;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class App extends JFrame{
@@ -29,8 +31,9 @@ public class App extends JFrame{
 	private JTextField textField;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	String search = "title";
-	static boolean userLogin = false;
-	static boolean modLogin = false;
+	static boolean useLog = false;
+	static boolean modLog = false;
+	static boolean adminLog = false;
 
 
 	//public static DefaultListModel<String> titles = new DefaultListModel<>();
@@ -53,7 +56,7 @@ public class App extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					App window = new App(userLogin, modLogin);
+					App window = new App(useLog, modLog, adminLog);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,17 +69,15 @@ public class App extends JFrame{
 	 * Create the application.
 	 * @throws FileNotFoundException 
 	 */
-	public App(boolean userLog, boolean modLog) throws FileNotFoundException {
-		initialize();
-		userLogin = userLog;
-		modLogin = modLog;
+	public App(boolean useLog, boolean modLog, boolean adminLog) throws FileNotFoundException {
+		initialize(useLog, modLog, adminLog);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws FileNotFoundException 
 	 */
-	private void initialize() throws FileNotFoundException {
+	private void initialize(boolean useLog, boolean modLog, boolean adminLog) throws FileNotFoundException {
 		
 		/*frmMovieshareStore = new JFrame();
 		frmMovieshareStore.setTitle("MovieShare Store");
@@ -264,11 +265,55 @@ public class App extends JFrame{
 			{
 				Login page = new Login();
 				page.setVisible(true);
+				
 			}
 		});
 		btnLogin.setBounds(15, 618, 115, 29);
 		//frmMovieshareStore.getContentPane().add(btnLogin);
 		getContentPane().add(btnLogin);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				try {
+					App newWindow = new App(false,false,false);
+					newWindow.setVisible(true);
+					dispose();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				
+			}
+		});
+		btnLogout.setBounds(15, 618, 115, 29);
+		
+		if(useLog) {
+			getContentPane().remove(btnLogin);
+			getContentPane().add(btnLogout);
+			JButton btnAddMovie = new JButton("Add Movie");
+			btnAddMovie.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					
+				}
+			});
+			btnAddMovie.setBounds(15, 573, 115, 29);
+			getContentPane().add(btnAddMovie);
+		}
+		
+		if(adminLog) {
+			getContentPane().remove(btnLogin);
+			getContentPane().add(btnLogout);
+			JButton btnApproveMovies = new JButton("Approve");
+			btnApproveMovies.setBounds(15, 538, 115, 29);
+			getContentPane().add(btnApproveMovies);
+		}
+		
 		
 		JButton btnDocumentary = new JButton("Documentary");
 		btnDocumentary.addActionListener(new ActionListener()
@@ -382,7 +427,7 @@ public class App extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					Movie selectedItem = (Movie) list.getSelectedValue();
-					MoviePage view = new MoviePage(selectedItem.getTitle(), selectedItem.getGenre(), selectedItem.getYear());
+					MoviePage view = new MoviePage(selectedItem.getTitle(), selectedItem.getGenre(), selectedItem.getYear(), useLog, modLog, adminLog);
 					view.setVisible(true);
 				}
 			}
@@ -391,3 +436,4 @@ public class App extends JFrame{
 		
 	}
 }
+
