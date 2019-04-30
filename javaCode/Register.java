@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -48,7 +49,7 @@ public class Register extends JFrame{
 	private void initialize() throws IOException {
 		//frmLogin = new JFrame();
 		setTitle("Register");
-		setBounds(100, 100, 450, 417);
+		setBounds(100, 100, 450, 475);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
@@ -75,19 +76,30 @@ public class Register extends JFrame{
 			public void actionPerformed(ActionEvent e)
 			{
 				try {
-					User user = new User(firstName.getText(), lastName.getText(), username.getText(), passwordField.getText(), modKey.getText());
+					if (modKey.getText().equals("")) {
+						System.out.println("here");
+						User user = new User(firstName.getText(), lastName.getText(), username.getText(), passwordField.getText(), "a");
+					}
+					else {
+						User user = new User(firstName.getText(), lastName.getText(), username.getText(), passwordField.getText(), modKey.getText());
+					}
+					Login log = new Login();
+					log.setVisible(true);
+					dispose();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				dispose();
+				
+				//dispose();
 			}
 		});
 		btnRegister.setBounds(153, 316, 115, 29);
 		getContentPane().add(btnRegister);
 		
 		JLabel lblUserLogin = new JLabel("User Registration");
-		lblUserLogin.setBounds(154, 16, 128, 20);
+		lblUserLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserLogin.setBounds(15, 16, 398, 20);
 		getContentPane().add(lblUserLogin);
 		
 		firstName = new JTextField();
@@ -112,7 +124,7 @@ public class Register extends JFrame{
 		modKey.setBounds(153, 262, 217, 26);
 		getContentPane().add(modKey);
 		
-		JLabel lblModeratorKey = new JLabel("Moderator Key:");
+		JLabel lblModeratorKey = new JLabel("Key:");
 		lblModeratorKey.setBounds(39, 265, 115, 20);
 		getContentPane().add(lblModeratorKey);
 	}
