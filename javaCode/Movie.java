@@ -47,7 +47,11 @@ public class Movie implements Comparable {
 
     // toString method
     public String toString() {
-        return "Movie [title=" + title + ", year=" + year + ", genre=" + genre + "]";
+    	String ret = "Movie [title=" + title + ", year=" + year + ", genre=" + genre + "]" + "\n";
+        for (Comment comment : comments) {
+        	ret += comment.toString() + "\n";
+        }
+        return ret;
     }
 
     @Override
