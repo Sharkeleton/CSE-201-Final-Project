@@ -124,14 +124,13 @@ public class MovieDatabase {
     }
 
     public User checkUserPass(String u, String p, String filePath) throws IOException {
-        User user = null;
         Scanner scn = new Scanner(new File(filePath));
         while (scn.hasNextLine()) {
             String line = scn.nextLine();
             if (line.contains("\t" + u + "\t")) {
                 int passIndex = line.indexOf(u) + u.length() + 1;
                 String passCheck = line.substring(passIndex, line.indexOf("\t", passIndex));
-                if(passCheck.equals(p)) {
+                if (passCheck.equals(p)) {
                     String[] words = line.split("\\s+");
                     User correctUser = new User(words[0], words[1], words[2], words[3], words[4]);
                     correctUser.checkUser();
@@ -139,6 +138,6 @@ public class MovieDatabase {
                 }
             }
         }
-        return user;
+        return null;
     }
 }
