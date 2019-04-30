@@ -1,4 +1,3 @@
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -37,11 +36,30 @@ public class User {
             isMod = true;
         }
     }
-
+    
     private void loadUser() throws IOException {
+        Scanner scn = new Scanner(new File("user.txt"));
+        String userInfo = firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\t" + userCheck;
+        boolean inFile = false;
+        while(scn.hasNextLine()) {
+            String line = scn.nextLine();
+            if(line.equals(userInfo)) {
+                System.out.println("hi");
+                inFile = true;
+                return;
+                
+            }
+        }
+        
+        scn.close();
+        
+        if(inFile) {
+            return;
+        }
+        
         File log = new File("user.txt");
         PrintWriter out = new PrintWriter(new FileWriter(log, true));
-        out.append(firstName + "\t" + lastName + "\t" + userName + "\t" + password + "\t" + userCheck + "\n");
+        out.append(userInfo + "\n");
         out.close();
     }
 
