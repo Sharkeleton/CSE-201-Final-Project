@@ -49,7 +49,7 @@ public class User {
     }
 
     private boolean isNewUser(String userInfo) throws FileNotFoundException {
-        Scanner scn = new Scanner(new File("user.txt"));
+        Scanner scn = new Scanner(new File("users.txt"));
         boolean inFile = false;
         while (scn.hasNextLine()) {
             String line = scn.nextLine();
@@ -80,6 +80,10 @@ public class User {
     public String getUserName() {
         return userName;
     }
+    
+    public String getPassword() {
+    	return password;
+    }
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -109,7 +113,7 @@ public class User {
         m.getNeedApprovedMovies().add(mov);
     }
 
-    public boolean approveMovie(MovieDatabase m, int movieID) {
+    public boolean approveMovie(MovieDatabase m, int movieID) throws IOException {
         // approving movie code
         m.addMovie(m.getNeedApprovedMovies().get(movieID));
         m.getNeedApprovedMovies().remove(movieID);
