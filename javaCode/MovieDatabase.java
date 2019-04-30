@@ -53,10 +53,6 @@ public class MovieDatabase {
         sc.close();
     }
 
-    public void loadUsersData(String filePath) {
-
-    }
-
     // Returns all movies in the database
     public void getAllMovies() {
         for (Movie m : movieList) {
@@ -79,6 +75,11 @@ public class MovieDatabase {
     // Adds a movie to the database
     public void addMovie(Movie m) {
         movieList.add(m);
+        addMovieToDatabase(m);
+    }
+
+    private void addMovieToDatabase(Movie m) {
+
     }
 
     // Returns a movie by its ID
