@@ -21,7 +21,29 @@ public class Movie implements Comparable {
     // Default constructor where all values are null/default
     public Movie() {
     }
+    
+    public void loadMovie(String fileName) throws IOException {
+        String movieInfo = movieID + "\t" + title + "\t" + year + "\t" + genre;
+        if (isNewMovie(movieInfo, fileName)) {
+            File log = new File(fileName);
+            PrintWriter out = new PrintWriter(new FileWriter(log, true));
+            out.append(movieInfo + "\n");
+            out.close();
+        }
+    }
 
+    private boolean isNewMovie(String movieInfo, String fileName) throws FileNotFoundException {
+        Scanner scn = new Scanner(new File(fileName));
+        while (scn.hasNextLine()) {
+            String line = scn.nextLine();
+            if (line.equals(movieInfo)) {
+                scn.close();
+                return false;
+            }
+        }
+        scn.close();
+        return true;
+    }
     // Methods ---------------------------------------------------------------
 
     // GETTER methods
