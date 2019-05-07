@@ -1,0 +1,26 @@
+    public void removeMovie(String fileName) throws IOException {
+    	ArrayList<Movie> mList = new ArrayList<Movie>();
+    	File file = new File(fileName);
+        Scanner sc = new Scanner(file);
+        while (sc.hasNextLine()) {
+            String curLine = sc.nextLine();
+            String[] splitted = curLine.split("\t");
+            if(Integer.parseInt(splitted[0]) != movieID) {
+            Movie mov = new Movie(	Integer.parseInt(splitted[0]), // movieID
+				                    splitted[1], // title
+				                    Integer.parseInt(splitted[2]), // year
+				                    splitted[3] // genre
+            );
+            mList.add(mov);
+            }
+        }
+        sc.close();
+        updateFile(mList, fileName);
+    }
+    private void updateFile(ArrayList<Movie> mList, String fileName) throws IOException {
+    	PrintWriter empty = new PrintWriter(new File(fileName));
+    	empty.print("");
+    	for(Movie m : mList) {
+    		m.loadMovie(fileName);
+    	}
+	}
