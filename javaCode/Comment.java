@@ -1,3 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 public class Comment {
 
     private User user;
@@ -7,13 +14,35 @@ public class Comment {
     private static int commentID = 1;
 
     public Comment(String comment, User user, int movieID) {
-        user = this.user;
-        comment = this.com;
+    	comment = this.com;
+    	user = this.user;
         movieID = this.movieID;
         myComID = commentID;
         ++commentID;
     }
+    
+    public void loadCom(String fileName) throws IOException {
+        String comInfo = com + "\t" + user + "\t" + movieID;
+        if (isNewCom(comInfo, fileName)) {
+            File log = new File(fileName);
+            PrintWriter out = new PrintWriter(new FileWriter(log, true));
+            out.append(comInfo + "\n");
+            out.close();
+        }
+    }
 
+    private boolean isNewCom(String comInfo, String fileName) throws FileNotFoundException {
+        Scanner scn = new Scanner(new File(fileName));
+        while (scn.hasNextLine()) {
+            String line = scn.nextLine();
+            if (line.equals(comInfo)) {
+                scn.close();
+                return false;
+            }
+        }
+        scn.close();
+        return true;
+    }
     public User getUser() {
         return user;
     }
