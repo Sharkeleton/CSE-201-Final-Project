@@ -93,13 +93,15 @@ public class Login extends JFrame{
 							lblUserLogin.setText("Invalid username/password");
 						}
 						else if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").isAdmin()) {
-							App home = new App(user, true,true,true);
+							User use = movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt");
+							App home = new App(use, true,true,true);
 							home.setVisible(true);
 							window.dispose();
 							dispose();
 						}
 						else if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").isMod()) {
-							App home = new App(user, true,true,false);
+							User use = movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt");
+							App home = new App(use, true,true,false);
 							home.setVisible(true);
 							window.dispose();
 							dispose();
@@ -108,7 +110,8 @@ public class Login extends JFrame{
 							lblUserLogin.setText("Invalid username/password.");
 						}
 						else {
-							App home = new App(user, true,false,false);
+							User use = movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt");
+							App home = new App(use, true,false,false);
 							home.setVisible(true);
 							window.dispose();
 							dispose();

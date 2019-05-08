@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,7 +8,11 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;
@@ -24,6 +29,7 @@ public class ApproveComment extends JFrame{
 	static boolean adminLog = false;
 	static User user;
 	static Movie movie;
+	static Comment temp;
 
 	/**
 	 * Launch the application.
@@ -43,20 +49,31 @@ public class ApproveComment extends JFrame{
 
 	/**
 	 * Create the application.
+	 * @throws FileNotFoundException 
 	 */
-	public ApproveComment(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) {
+	public ApproveComment(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) throws FileNotFoundException {
 		initialize(user, movie, useLog, modLog, adminLog);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws FileNotFoundException 
 	 */
-	private void initialize(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) {
+	private void initialize(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) throws FileNotFoundException {
 		//frmMovie = new JFrame();
 		setTitle(movie.getTitle());
 		setBounds(100, 100, 770, 719);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		
+		DefaultListModel<Comment> titles = new DefaultListModel<>();
+		MovieDatabase movies = new MovieDatabase("Movie.txt");
+		for(Comment c : movies.getNeedApprovedComments()) {
+			if (c.getMovieID() == movie.getMovieID()) {
+				titles.addElement(c);
+			}
+			
+		}
 		
 		JLabel lblMovieTitle = new JLabel(movie.getTitle());
 		lblMovieTitle.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -82,33 +99,68 @@ public class ApproveComment extends JFrame{
 		scrollBar.setBounds(159, 153, 574, 494);
 		getContentPane().add(scrollBar);
 		
-		JList list = new JList();
+		JList<Comment> list = new JList<Comment>(titles);
 		list.setBounds(159, 153, 574, 494);
 		getContentPane().add(list);
+		scrollBar.setViewportView(list);
+		
+		MouseListener mouseListener = new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				temp = (Comment) list.getSelectedValue();
+				
+			}
+		};
+		list.addMouseListener(mouseListener);
+
 		
 //		if (useLog) {
-			JButton btnComment = new JButton("Disapprove");
-			btnComment.setBounds(15, 618, 115, 29);
-			btnComment.addActionListener(new ActionListener()
+			JButton btnDisapprove = new JButton("Disapprove");
+			btnDisapprove.setBounds(15, 618, 115, 29);
+			btnDisapprove.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					AddComment page;
-					try {
-						page = new AddComment(user, movie);
-						page.setVisible(true);
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					if (temp != null) {
+						try {
+							temp.removeComment("NeedApprovedComments.txt");
+							//page.setVisible(false);
+							App window = new App(user, useLog, modLog, adminLog);
+							window.setVisible(true);
+							dispose();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
 					}
 				}
 			});
-			getContentPane().add(btnComment);
+			getContentPane().add(btnDisapprove);
 //		}
 		
 //		if (modLog) {
 			JButton btnApprove = new JButton("Approve");
 			btnApprove.setBounds(15, 573, 115, 29);
+			btnApprove.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					try {
+						if (temp != null) {
+							//System.out.println(temp.getMovieID() + " " + temp.getTitle());
+							temp.loadComment("Comment.txt");
+							temp.removeComment("NeedApprovedComments.txt");
+							//page.setVisible(false);
+							App window = new App(user, useLog, modLog, adminLog);
+							window.setVisible(true);
+							dispose();
+						}
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
 			getContentPane().add(btnApprove);
 //		}
 		

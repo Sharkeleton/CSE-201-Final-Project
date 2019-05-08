@@ -423,7 +423,7 @@ public class ApproveMovie extends JFrame{
 						//System.out.println(temp.getMovieID() + " " + temp.getTitle());
 						temp.loadMovie("Movie.txt");
 						temp.removeMovie("NeedApprovedMovies.txt");
-						page.setVisible(false);
+						//page.setVisible(false);
 						App window = new App(user, useLog, modLog, adminLog);
 						window.setVisible(true);
 						dispose();
@@ -448,7 +448,7 @@ public class ApproveMovie extends JFrame{
 				if (temp != null) {
 					try {
 						temp.removeMovie("NeedApprovedMovies.txt");
-						page.setVisible(false);
+						//page.setVisible(false);
 						App window = new App(user, useLog, modLog, adminLog);
 						window.setVisible(true);
 						dispose();

@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,20 +44,31 @@ public class MoviePage extends JFrame{
 
 	/**
 	 * Create the application.
+	 * @throws FileNotFoundException 
 	 */
-	public MoviePage(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) {
+	public MoviePage(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) throws FileNotFoundException {
 		initialize(user, movie, useLog, modLog, adminLog);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws FileNotFoundException 
 	 */
-	private void initialize(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) {
+	private void initialize(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) throws FileNotFoundException {
 		//frmMovie = new JFrame();
 		setTitle(movie.getTitle());
 		setBounds(100, 100, 770, 719);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		
+		DefaultListModel<String> titles = new DefaultListModel<>();
+		MovieDatabase movies = new MovieDatabase("Movie.txt");
+		for(Comment c : movies.getCommentList()) {
+			if (c.getMovieID() == movie.getMovieID()) {
+				titles.addElement(c.getCom() + " - " + c.getUser());
+			}
+			
+		}
 		
 		JLabel lblMovieTitle = new JLabel(movie.getTitle());
 		lblMovieTitle.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -82,9 +94,11 @@ public class MoviePage extends JFrame{
 		scrollBar.setBounds(159, 153, 574, 494);
 		getContentPane().add(scrollBar);
 		
-		JList list = new JList();
+		JList<String> list = new JList<String>(titles);
 		list.setBounds(159, 153, 574, 494);
 		getContentPane().add(list);
+		scrollBar.setViewportView(list);
+
 		
 		if (useLog) {
 			JButton btnComment = new JButton("Comment");
@@ -113,8 +127,14 @@ public class MoviePage extends JFrame{
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					ApproveComment page = new ApproveComment(user, movie, useLog, modLog, adminLog);
-					page.setVisible(true);
+					ApproveComment page;
+					try {
+						page = new ApproveComment(user, movie, useLog, modLog, adminLog);
+						page.setVisible(true);
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 				}
 			});

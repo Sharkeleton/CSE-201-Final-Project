@@ -448,8 +448,15 @@ public class App extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					Movie selectedItem = (Movie) list.getSelectedValue();
-					MoviePage view = new MoviePage(user, selectedItem, useLog, modLog, adminLog);
-					view.setVisible(true);
+					MoviePage view;
+					try {
+						view = new MoviePage(user, selectedItem, useLog, modLog, adminLog);
+						view.setVisible(true);
+
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			}
 		};

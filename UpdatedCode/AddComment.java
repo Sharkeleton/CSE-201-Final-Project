@@ -71,8 +71,20 @@ public class AddComment extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				Comment com = new Comment(comment.getText(), user, movie.getMovieID());
+				movies.sortComByID();
+				int newID;
+				if (movies.getNeedApprovedComments().size() < 1) {
+					newID = movies.getCommentList().get(movies.getCommentList().size()-1).getComID()+1;
+				}
+				else {
+					newID = Math.max(movies.getCommentList().get(movies.getCommentList().size()-1).getComID(), movies.getNeedApprovedComments().get(movies.getNeedApprovedComments().size()-1).getComID())+1;
+				}
+				Comment com = new Comment(newID, comment.getText(), user.getUserName(), movie.getMovieID());
 				movies.addComment(com);
+				System.out.println(com.getComID());
+				System.out.println(com.getCom());
+				System.out.println(com.getUser());
+				System.out.println(com.getMovieID());
 				try {
 					com.loadComment("NeedApprovedComments.txt");
 				} catch (IOException e1) {

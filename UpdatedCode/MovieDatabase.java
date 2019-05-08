@@ -15,6 +15,7 @@ public class MovieDatabase {
     private ArrayList<Movie> movieList = new ArrayList<Movie>();
     private ArrayList<Movie> needApprovedMovieList = new ArrayList<Movie>();
     private ArrayList<Comment> needApprovedComments = new ArrayList<Comment>();
+    private ArrayList<Comment> commentList = new ArrayList<Comment>();
 
     // Constructors ----------------------------------------------------------
 
@@ -27,6 +28,8 @@ public class MovieDatabase {
     public MovieDatabase(String filePath) throws FileNotFoundException {
         loadMovieData(filePath);
         loadApproveMovieData("NeedApprovedMovies.txt");
+        loadApproveCommentData("NeedApprovedComments.txt");
+        loadCommentData("Comment.txt");
     }
 
     // Default constructor for a Movie database
@@ -71,6 +74,42 @@ public class MovieDatabase {
         }
         sc.close();
     }
+    
+    private void loadApproveCommentData(String filePath) throws FileNotFoundException {
+        // Creating the file and scanner to read from the file (skips first line)
+        File file = new File(filePath);
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNextLine()) {
+            String curLine = sc.nextLine();
+            String[] splitted = curLine.split("\t");
+            Comment com = new Comment(Integer.parseInt(splitted[0]), // movieID
+                    splitted[1], // title
+                    splitted[2], // year
+                    Integer.parseInt(splitted[3]) // genre
+            );
+            needApprovedComments.add(com);
+        }
+        sc.close();
+    }
+    
+    private void loadCommentData(String filePath) throws FileNotFoundException {
+        // Creating the file and scanner to read from the file (skips first line)
+        File file = new File(filePath);
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNextLine()) {
+            String curLine = sc.nextLine();
+            String[] splitted = curLine.split("\t");
+            Comment com = new Comment(Integer.parseInt(splitted[0]), // movieID
+                    splitted[1], // title
+                    splitted[2], // year
+                    Integer.parseInt(splitted[3]) // genre
+            );
+            commentList.add(com);
+        }
+        sc.close();
+    }
 
     // Returns all movies in the database
     public void getAllMovies() {
@@ -89,6 +128,10 @@ public class MovieDatabase {
 
     public ArrayList<Comment> getNeedApprovedComments() {
         return needApprovedComments;
+    }
+    
+    public ArrayList<Comment> getCommentList() {
+    	return commentList;
     }
 
     // Adds a movie to the database
@@ -176,6 +219,17 @@ public class MovieDatabase {
     public ArrayList<Movie> sortByID() {
     	Collections.sort(movieList, idOrder);
     	return movieList;
+    }
+    
+    Comparator<Comment> comIdOrder = new Comparator<Comment>() {
+    	public int compare(Comment c1, Comment c2) {
+    		return c1.getComID() - c2.getComID();
+    	}
+    };
+    
+    public ArrayList<Comment> sortComByID() {
+    	Collections.sort(commentList, comIdOrder);
+    	return commentList;
     }
 
     public void addUsers(String string) {
