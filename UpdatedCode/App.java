@@ -33,6 +33,7 @@ public class App extends JFrame{
 	static boolean modLog = false;
 	static boolean adminLog = false;
 	static User user;
+	static App window;
 
 
 	//public static DefaultListModel<String> titles = new DefaultListModel<>();
@@ -55,7 +56,7 @@ public class App extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					App window = new App(user, useLog, modLog, adminLog);
+					window = new App(user, useLog, modLog, adminLog);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -262,7 +263,7 @@ public class App extends JFrame{
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				Login page = new Login(user);
+				Login page = new Login(window, user);
 				page.setVisible(true);
 				
 			}
@@ -323,8 +324,8 @@ public class App extends JFrame{
 				public void actionPerformed(ActionEvent e)
 				{
 					try {
-						ApproveMovie window = new ApproveMovie(movies);
-						window.setVisible(true);
+						ApproveMovie page = new ApproveMovie(window, movies, user, useLog, modLog, adminLog);
+						page.setVisible(true);
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -447,7 +448,7 @@ public class App extends JFrame{
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					Movie selectedItem = (Movie) list.getSelectedValue();
-					MoviePage view = new MoviePage(user, selectedItem.getMovieID(), selectedItem.getTitle(), selectedItem.getGenre(), selectedItem.getYear(), useLog, modLog, adminLog);
+					MoviePage view = new MoviePage(user, selectedItem, useLog, modLog, adminLog);
 					view.setVisible(true);
 				}
 			}

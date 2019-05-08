@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -73,23 +74,45 @@ public class AddMovie extends JFrame {
 		genre.setBounds(153, 118, 217, 26);
 		getContentPane().add(genre);
 		
+		JLabel lblAdd = new JLabel("Add a Movie");
+		lblAdd.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAdd.setBounds(15, 16, 398, 20);
+		getContentPane().add(lblAdd);
+		
 		JButton btnAdd = new JButton("Submit");
 		btnAdd.setBounds(153, 227, 115, 29);
 		btnAdd.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				movies.addNewMovie(new Movie(movies.getMovieList().size()+1, title.getText(), Integer.parseInt(year.getText()), genre.getText()));
-				//System.out.println(movies.getNeedApprovedMovies());
-				dispose();
+				if (title.getText().equals("") || year.getText().equals("") || genre.getText().equals("")) {
+					lblAdd.setText("Please fill out all fields to submit.");
+				}
+				else {
+					movies.sortByID();
+					int newID;
+					if (movies.getNeedApprovedMovies().size() < 1) {
+						newID = movies.getMovieList().get(movies.getMovieList().size()-1).getMovieID()+1;
+					}
+					else {
+						newID = Math.max(movies.getMovieList().get(movies.getMovieList().size()-1).getMovieID(), movies.getNeedApprovedMovies().get(movies.getNeedApprovedMovies().size()-1).getMovieID())+1;
+					}
+					Movie movie = new Movie(newID, title.getText(), Integer.parseInt(year.getText()), genre.getText());
+					movies.addNewMovie(movie);
+					try {
+						movie.loadMovie("NeedApprovedMovies.txt");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					//System.out.println(movies.getNeedApprovedMovies());
+					dispose();
+				}
+				
 			}
 		});
 		getContentPane().add(btnAdd);
-		
-		JLabel lblAdd = new JLabel("Add a Movie");
-		lblAdd.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAdd.setBounds(15, 16, 398, 20);
-		getContentPane().add(lblAdd);
 		
 		year = new JTextField();
 		year.setBounds(153, 164, 217, 26);

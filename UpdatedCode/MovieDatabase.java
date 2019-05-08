@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MovieDatabase {
@@ -25,6 +26,7 @@ public class MovieDatabase {
     // Constructor for a Movie Database from a text file
     public MovieDatabase(String filePath) throws FileNotFoundException {
         loadMovieData(filePath);
+        loadApproveMovieData("NeedApprovedMovies.txt");
     }
 
     // Default constructor for a Movie database
@@ -48,6 +50,24 @@ public class MovieDatabase {
                     splitted[3] // genre
             );
             movieList.add(mov);
+        }
+        sc.close();
+    }
+    
+    private void loadApproveMovieData(String filePath) throws FileNotFoundException {
+        // Creating the file and scanner to read from the file (skips first line)
+        File file = new File(filePath);
+        Scanner sc = new Scanner(file);
+
+        while (sc.hasNextLine()) {
+            String curLine = sc.nextLine();
+            String[] splitted = curLine.split("\t");
+            Movie mov = new Movie(Integer.parseInt(splitted[0]), // movieID
+                    splitted[1], // title
+                    Integer.parseInt(splitted[2]), // year
+                    splitted[3] // genre
+            );
+            needApprovedMovieList.add(mov);
         }
         sc.close();
     }
@@ -82,6 +102,7 @@ public class MovieDatabase {
     
     public void addComment(Comment com) {
         getNeedApprovedComments().add(com);
+        
     }
 
     public void addNewMovie(Movie mov) {
@@ -144,6 +165,17 @@ public class MovieDatabase {
     public ArrayList<Movie> sortMovies() {
         Collections.sort(movieList);
         return movieList;
+    }
+    
+    Comparator<Movie> idOrder = new Comparator<Movie>() {
+    	public int compare(Movie m1, Movie m2) {
+    		return m1.getMovieID() - m2.getMovieID();
+    	}
+    };
+    
+    public ArrayList<Movie> sortByID() {
+    	Collections.sort(movieList, idOrder);
+    	return movieList;
     }
 
     public void addUsers(String string) {

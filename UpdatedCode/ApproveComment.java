@@ -12,7 +12,7 @@ import java.io.FileNotFoundException;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
 
-public class MoviePage extends JFrame{
+public class ApproveComment extends JFrame{
 
 	//private JFrame frmMovie;
 	static String movieTitle;
@@ -32,7 +32,7 @@ public class MoviePage extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MoviePage window = new MoviePage(user, movie, useLog, modLog, adminLog);
+					ApproveComment window = new ApproveComment(user, movie, useLog, modLog, adminLog);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,7 +44,7 @@ public class MoviePage extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public MoviePage(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) {
+	public ApproveComment(User user, Movie movie, boolean useLog, boolean modLog, boolean adminLog) {
 		initialize(user, movie, useLog, modLog, adminLog);
 	}
 
@@ -86,8 +86,8 @@ public class MoviePage extends JFrame{
 		list.setBounds(159, 153, 574, 494);
 		getContentPane().add(list);
 		
-		if (useLog) {
-			JButton btnComment = new JButton("Comment");
+//		if (useLog) {
+			JButton btnComment = new JButton("Disapprove");
 			btnComment.setBounds(15, 618, 115, 29);
 			btnComment.addActionListener(new ActionListener()
 			{
@@ -104,22 +104,13 @@ public class MoviePage extends JFrame{
 				}
 			});
 			getContentPane().add(btnComment);
-		}
+//		}
 		
-		if (modLog) {
+//		if (modLog) {
 			JButton btnApprove = new JButton("Approve");
 			btnApprove.setBounds(15, 573, 115, 29);
-			btnApprove.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					ApproveComment page = new ApproveComment(user, movie, useLog, modLog, adminLog);
-					page.setVisible(true);
-					
-				}
-			});
 			getContentPane().add(btnApprove);
-		}
+//		}
 		
 	}
 }

@@ -21,6 +21,7 @@ public class Login extends JFrame{
 	private JPasswordField passwordField;
 	static ArrayList<User> users;
 	static User user;
+	static App window;
 
 	/**
 	 * Launch the application.
@@ -29,8 +30,8 @@ public class Login extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login(user);
-					window.setVisible(true);
+					Login page = new Login(window, user);
+					page.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -41,14 +42,14 @@ public class Login extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public Login(User user) {
-		initialize(user);
+	public Login(App window, User user) {
+		initialize(window, user);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(User user) {
+	private void initialize(App window, User user) {
 		//frmLogin = new JFrame();
 		setTitle("Login");
 		setBounds(100, 100, 450, 364);
@@ -88,14 +89,19 @@ public class Login extends JFrame{
 				try {
 					MovieDatabase movies = new MovieDatabase("Movie.txt");
 					try {
-						if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").isAdmin()) {
+						if (textField.getText().equals("") || passwordField.getText().equals("")) {
+							lblUserLogin.setText("Invalid username/password");
+						}
+						else if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").isAdmin()) {
 							App home = new App(user, true,true,true);
 							home.setVisible(true);
+							window.dispose();
 							dispose();
 						}
 						else if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").isMod()) {
 							App home = new App(user, true,true,false);
 							home.setVisible(true);
+							window.dispose();
 							dispose();
 						}
 						else if (movies.checkUserPass(textField.getText(), passwordField.getText(), "user.txt").equals(null)) {
@@ -104,6 +110,7 @@ public class Login extends JFrame{
 						else {
 							App home = new App(user, true,false,false);
 							home.setVisible(true);
+							window.dispose();
 							dispose();
 						}
 					} catch (IOException e1) {
@@ -127,7 +134,7 @@ public class Login extends JFrame{
 			{
 				Register page;
 				try {
-					page = new Register();
+					page = new Register(window);
 					page.setVisible(true);
 					dispose();
 				} catch (IOException e1) {

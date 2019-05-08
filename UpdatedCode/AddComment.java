@@ -3,6 +3,7 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -17,6 +18,7 @@ public class AddComment extends JFrame {
 	private JTextField comment;
 	static User user;
 	static int movieID;
+	static Movie movie;
 
 	/**
 	 * Launch the application.
@@ -25,7 +27,7 @@ public class AddComment extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddComment window = new AddComment(user, movieID);
+					AddComment window = new AddComment(user, movie);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,15 +40,15 @@ public class AddComment extends JFrame {
 	 * Create the application.
 	 * @throws FileNotFoundException 
 	 */
-	public AddComment(User user, int movieID) throws FileNotFoundException {
-		initialize(user, movieID);
+	public AddComment(User user, Movie movie) throws FileNotFoundException {
+		initialize(user, movie);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 * @throws FileNotFoundException 
 	 */
-	private void initialize(User user, int movieID) throws FileNotFoundException {
+	private void initialize(User user, Movie movie) throws FileNotFoundException {
 		MovieDatabase movies = new MovieDatabase("Movie.txt");
 	
 		setTitle("Add a Comment");
@@ -69,7 +71,14 @@ public class AddComment extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				movies.addComment(new Comment(comment.getText(), user, movieID));
+				Comment com = new Comment(comment.getText(), user, movie.getMovieID());
+				movies.addComment(com);
+				try {
+					com.loadComment("NeedApprovedComments.txt");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				dispose();
 			}
 		});

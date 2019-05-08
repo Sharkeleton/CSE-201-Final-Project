@@ -19,6 +19,7 @@ public class Register extends JFrame{
 	private JTextField firstName;
 	private JTextField lastName;
 	private JPasswordField modKey;
+	static App window;
 
 	/**
 	 * Launch the application.
@@ -27,8 +28,8 @@ public class Register extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Register window = new Register();
-					window.setVisible(true);
+					Register page = new Register(window);
+					page.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,14 +40,14 @@ public class Register extends JFrame{
 	/**
 	 * Create the application.
 	 */
-	public Register() throws IOException {
-		initialize();
+	public Register(App window) throws IOException {
+		initialize(window);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() throws IOException {
+	private void initialize(App window) throws IOException {
 		//frmLogin = new JFrame();
 		setTitle("Register");
 		setBounds(100, 100, 450, 475);
@@ -70,6 +71,11 @@ public class Register extends JFrame{
 		passwordField.setBounds(153, 118, 217, 26);
 		getContentPane().add(passwordField);
 		
+		JLabel lblUserReg = new JLabel("User Registration");
+		lblUserReg.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserReg.setBounds(15, 16, 398, 20);
+		getContentPane().add(lblUserReg);
+		
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener()
 		{
@@ -77,16 +83,23 @@ public class Register extends JFrame{
 			{
 				try {
 					User user;
-					if (modKey.getText().equals("")) {
+					if (firstName.getText().equals("") || lastName.getText().equals("") || passwordField.getText().equals("") || username.getText().equals("")) {
+						lblUserReg.setText("Must fill out all fields");
+					}
+					else if (modKey.getText().equals("")) {
 						//System.out.println("here");
 						user = new User(firstName.getText(), lastName.getText(), username.getText(), passwordField.getText(), "a");
+						Login log = new Login(window, user);
+						log.setVisible(true);
+						dispose();
 					}
 					else {
 						user = new User(firstName.getText(), lastName.getText(), username.getText(), passwordField.getText(), modKey.getText());
+						Login log = new Login(window, user);
+						log.setVisible(true);
+						dispose();
 					}
-					Login log = new Login(user);
-					log.setVisible(true);
-					dispose();
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -98,10 +111,6 @@ public class Register extends JFrame{
 		btnRegister.setBounds(153, 316, 115, 29);
 		getContentPane().add(btnRegister);
 		
-		JLabel lblUserLogin = new JLabel("User Registration");
-		lblUserLogin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserLogin.setBounds(15, 16, 398, 20);
-		getContentPane().add(lblUserLogin);
 		
 		firstName = new JTextField();
 		firstName.setBounds(153, 164, 217, 26);

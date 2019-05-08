@@ -14,35 +14,13 @@ public class Comment {
     private static int commentID = 1;
 
     public Comment(String comment, User user, int movieID) {
-    	comment = this.com;
-    	user = this.user;
+        user = this.user;
+        comment = this.com;
         movieID = this.movieID;
         myComID = commentID;
         ++commentID;
     }
-    
-    public void loadCom(String fileName) throws IOException {
-        String comInfo = commentID + "\t" + com + "\t" + user + "\t" + movieID;
-        if (isNewCom(comInfo, fileName)) {
-            File log = new File(fileName);
-            PrintWriter out = new PrintWriter(new FileWriter(log, true));
-            out.append(comInfo + "\n");
-            out.close();
-        }
-    }
 
-    private boolean isNewCom(String comInfo, String fileName) throws FileNotFoundException {
-        Scanner scn = new Scanner(new File(fileName));
-        while (scn.hasNextLine()) {
-            String line = scn.nextLine();
-            if (line.equals(comInfo)) {
-                scn.close();
-                return false;
-            }
-        }
-        scn.close();
-        return true;
-    }
     public User getUser() {
         return user;
     }
@@ -62,6 +40,29 @@ public class Comment {
     @Override
     public String toString() {
         return "Comment [com=" + com + "]";
+    }
+    
+    public void loadComment(String fileName) throws IOException {
+        String commentInfo = myComID + "\t" + user + "\t" + com + "\t" + movieID;
+        if (isNewComment(commentInfo, fileName)) {
+            File log = new File(fileName);
+            PrintWriter out = new PrintWriter(new FileWriter(log, true));
+            out.append(commentInfo + "\n");
+            out.close();
+        }
+    }
+    
+    private boolean isNewComment(String commentInfo, String fileName) throws FileNotFoundException {
+        Scanner scn = new Scanner(new File(fileName));
+        while (scn.hasNextLine()) {
+            String line = scn.nextLine();
+            if (line.equals(commentInfo)) {
+                scn.close();
+                return false;
+            }
+        }
+        scn.close();
+        return true;
     }
 
 }

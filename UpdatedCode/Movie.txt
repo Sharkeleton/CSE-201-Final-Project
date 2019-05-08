@@ -1,99 +1,110 @@
-2	(Absolutions) Pipilotti's Mistakes ((Entlastungen) Pipilottis Fehler)	1999	(no genres listed)
-3	I Sell the Dead	2012	Comedy|Horror
-4	Cuenca Crime, The (Crimen de Cuenca, El)	2007	Drama
-5	Anatomy (Anatomie)	1992	Horror
-6	Rudolph the Red-Nosed Reindeer: The Movie	2003	Animation|Children
-7	Super Cops, The	1992	Action|Comedy|Crime|Drama|Thriller
-8	Bells Are Ringing	1991	Comedy|Musical|Romance
-9	Ring, The	1999	Drama
-10	A Fight For	2007	(no genres listed)
-11	Chalet Girl	2008	Comedy|Romance
-12	Guitar, The	2004	Drama|Romance
-13	Twelve O'Clock High	1991	Drama|War
-14	Väreitä	2000	Drama
-15	Ajami	2000	Crime|Drama
-16	Stranger in Town, A	1995	Drama|Romance
-17	Dear Pillow	2000	Drama
-18	Innocent Affair, An (Don't Trust Your Husband) (Under Suspicion)	2010	Comedy
-19	Poto and Cabengo	2000	Documentary
-20	Little Fockers	2010	Comedy
-21	Band Called Death, A	1986	Documentary
-22	The Stoker	2011	Crime|Drama
-23	'R Xmas	2012	Crime|Drama
-24	Searching for Sugar Man	2005	Documentary
-25	Affair of the Necklace, The	2010	Drama
-26	Donkey Punch	2000	Horror|Thriller
-27	Coney Island	2009	Comedy
-28	Turbo: A Power Rangers Movie	1969	Action|Adventure|Children
-29	When We Leave (Die Fremde)	2000	Drama
-30	Miss Annie Rooney	2004	Drama
-31	Springsteen & I	2002	Documentary
-32	Flying Down to Rio	2008	Comedy|Musical|Romance
-33	President's Last Bang, The (Geuddae geusaramdeul)	2008	Comedy|Crime|Drama
-34	Kon-Tiki	2010	Adventure|Documentary
-35	On His Own (a.k.a. My Apprenticeship) (V lyudyakh)	1999	Drama
-36	Missing in Action	1997	Action|War
-37	Everything Is Illuminated	2011	Comedy|Drama
-38	Trailer Park Boys: Countdown to Liquor Day	2005	Comedy|Crime
-39	Snapper, The	1993	Comedy|Drama
-40	Return to Sender	1994	Drama|Thriller
-41	Piter FM	1990	Comedy|Drama|Romance
-42	Vampire Apocalypse	2002	Comedy|Horror
-43	Transfer	2001	Drama|Sci-Fi
-44	Karan Arjun	1992	Drama
-45	Where the Boys Are '84	2001	Comedy
-46	Tales from the Darkside: The Movie	2009	Fantasy|Horror|Thriller
-47	Stooge, The	1990	Comedy
-48	Hurricane, The	1989	Action|Drama|Romance
-49	Pokémon: The First Movie	2002	Adventure|Animation|Children|Fantasy|Sci-Fi
-50	Beast with Five Fingers, The	2003	Horror
-51	This Property is Condemned	1980	Drama|Romance
-52	Marjorie Morningstar	1969	Drama
-53	Star Witness, The	2013	Drama
-54	Big Day, The (We Met on the Vineyard)	1998	Comedy
-55	Affair of Love, An (Liaison pornographique, Une)	2011	Drama|Romance
-56	Escapist, The	1964	Thriller
-57	Lagaan: Once Upon a Time in India	1999	Comedy|Drama|Musical|Romance
-58	Me & Isaac Newton	1987	Documentary
-59	Horror Planet (a.k.a. Inseminoid)	1996	Action|Drama|Horror|Sci-Fi
-60	Defense of the Realm	1997	Thriller
-61	Midnight Run	2005	Action|Comedy|Crime|Thriller
-62	Friends of God: A Road Trip with Alexandra Pelosi	2001	Documentary
-63	Burning Palms	2009	Comedy|Drama
-64	Funny About Love	1985	Comedy|Romance
-65	Babylon 5: A Call to Arms	2000	Adventure|Sci-Fi
-66	Werner - Beinhart!	1992	Action|Animation|Comedy
-67	Expelled: No Intelligence Allowed	1990	Documentary
-68	Parents	1983	Comedy|Drama|Horror
-69	She	2002	Adventure|Fantasy|Romance
-70	Great Outdoors, The	2010	Comedy
-71	Sweetgrass	2002	Adventure|Documentary|Western
-72	Wesley Willis: The Daddy of Rock 'n' Roll	2009	Documentary
-73	Eye of the Tiger	1983	Action
-74	With Six You Get Eggroll	2012	Comedy|Romance
-75	Thurgood	1998	Drama
-76	Gigli	1999	Comedy|Crime|Romance
-77	Inspectors, The	1994	Crime|Mystery
-78	Dark House	2003	Horror|Thriller
-79	Perfectly Normal	1994	Comedy
-80	Mr. Toad's Wild Ride (a.k.a. The Wind in the Willows)	2005	Adventure|Animation|Comedy
-81	Born Reckless	2008	Action|Adventure|Crime|Drama|Romance
-82	Lapland Odyssey (Napapiirin sankarit)	1993	Comedy|Drama|Romance
-83	The Elephant Man	1989	Drama
-84	Head of State	2012	Comedy
-85	Voyage to Cythera (Taxidi sta Kythira)	2004	Drama
-86	Monga	2006	Crime|Drama
-87	Tom & Thomas	1995	Adventure|Children
-88	Diplomatic Siege	1999	Action|Thriller
-89	Curse of the Puppet Master (Puppet Master 6: The Curse)	2001	Horror|Sci-Fi|Thriller
-90	Dante's Inferno: An Animated Epic	2007	Action|Animation|Fantasy
-91	360	1960	Drama
-92	Blackball	2004	Comedy|Drama
-93	Devil's Own, The	2003	Action|Drama|Thriller
-94	Devil at 4 O'Clock, The	2010	Drama
-95	'Til There Was You	2006	Drama|Romance
-96	Alice in Wonderland	2006	Children|Fantasy|Sci-Fi
-97	Wicked City (Yôjû toshi)	2011	Animation|Fantasy|Horror|Sci-Fi
-98	War Tapes, The	1997	Documentary|War
-99	Miracle in Milan (Miracolo a Milano)	2003	Comedy|Drama|Fantasy
-100	Sands of Iwo Jima	1999	Action|Drama|Romance|War
+0	(Absolutions) Pipilotti's Mistakes ((Entlastungen) Pipilottis Fehler)	1999	(no genres listed)
+1	I Sell the Dead	2012	Comedy|Horror
+2	Cuenca Crime, The (Crimen de Cuenca, El)	2007	Drama
+3	Anatomy (Anatomie)	1992	Horror
+4	Rudolph the Red-Nosed Reindeer: The Movie	2003	Animation|Children
+5	Super Cops, The	1992	Action|Comedy|Crime|Drama|Thriller
+6	Bells Are Ringing	1991	Comedy|Musical|Romance
+7	Ring, The	1999	Drama
+8	A Fight For	2007	(no genres listed)
+9	Chalet Girl	2008	Comedy|Romance
+10	Guitar, The	2004	Drama|Romance
+11	Twelve O'Clock High	1991	Drama|War
+12	Väreitä	2000	Drama
+13	Ajami	2000	Crime|Drama
+14	Stranger in Town, A	1995	Drama|Romance
+15	Dear Pillow	2000	Drama
+16	Innocent Affair, An (Don't Trust Your Husband) (Under Suspicion)	2010	Comedy
+17	Poto and Cabengo	2000	Documentary
+18	Little Fockers	2010	Comedy
+19	Band Called Death, A	1986	Documentary
+20	The Stoker	2011	Crime|Drama
+21	'R Xmas	2012	Crime|Drama
+22	Searching for Sugar Man	2005	Documentary
+23	Affair of the Necklace, The	2010	Drama
+24	Donkey Punch	2000	Horror|Thriller
+25	Coney Island	2009	Comedy
+26	Turbo: A Power Rangers Movie	1969	Action|Adventure|Children
+27	When We Leave (Die Fremde)	2000	Drama
+28	Miss Annie Rooney	2004	Drama
+29	Springsteen & I	2002	Documentary
+30	Flying Down to Rio	2008	Comedy|Musical|Romance
+31	President's Last Bang, The (Geuddae geusaramdeul)	2008	Comedy|Crime|Drama
+32	Kon-Tiki	2010	Adventure|Documentary
+33	On His Own (a.k.a. My Apprenticeship) (V lyudyakh)	1999	Drama
+34	Missing in Action	1997	Action|War
+35	Everything Is Illuminated	2011	Comedy|Drama
+36	Trailer Park Boys: Countdown to Liquor Day	2005	Comedy|Crime
+37	Snapper, The	1993	Comedy|Drama
+38	Return to Sender	1994	Drama|Thriller
+39	Piter FM	1990	Comedy|Drama|Romance
+40	Vampire Apocalypse	2002	Comedy|Horror
+41	Transfer	2001	Drama|Sci-Fi
+42	Karan Arjun	1992	Drama
+43	Where the Boys Are '84	2001	Comedy
+44	Tales from the Darkside: The Movie	2009	Fantasy|Horror|Thriller
+45	Stooge, The	1990	Comedy
+46	Hurricane, The	1989	Action|Drama|Romance
+47	Pokémon: The First Movie	2002	Adventure|Animation|Children|Fantasy|Sci-Fi
+48	Beast with Five Fingers, The	2003	Horror
+49	This Property is Condemned	1980	Drama|Romance
+50	Marjorie Morningstar	1969	Drama
+51	Star Witness, The	2013	Drama
+52	Big Day, The (We Met on the Vineyard)	1998	Comedy
+53	Affair of Love, An (Liaison pornographique, Une)	2011	Drama|Romance
+54	Escapist, The	1964	Thriller
+55	Lagaan: Once Upon a Time in India	1999	Comedy|Drama|Musical|Romance
+56	Me & Isaac Newton	1987	Documentary
+57	Horror Planet (a.k.a. Inseminoid)	1996	Action|Drama|Horror|Sci-Fi
+58	Defense of the Realm	1997	Thriller
+59	Midnight Run	2005	Action|Comedy|Crime|Thriller
+60	Friends of God: A Road Trip with Alexandra Pelosi	2001	Documentary
+61	Burning Palms	2009	Comedy|Drama
+62	Funny About Love	1985	Comedy|Romance
+63	Babylon 5: A Call to Arms	2000	Adventure|Sci-Fi
+64	Werner - Beinhart!	1992	Action|Animation|Comedy
+65	Expelled: No Intelligence Allowed	1990	Documentary
+66	Parents	1983	Comedy|Drama|Horror
+67	She	2002	Adventure|Fantasy|Romance
+68	Great Outdoors, The	2010	Comedy
+69	Sweetgrass	2002	Adventure|Documentary|Western
+70	Wesley Willis: The Daddy of Rock 'n' Roll	2009	Documentary
+71	Eye of the Tiger	1983	Action
+72	With Six You Get Eggroll	2012	Comedy|Romance
+73	Thurgood	1998	Drama
+74	Gigli	1999	Comedy|Crime|Romance
+75	Inspectors, The	1994	Crime|Mystery
+76	Dark House	2003	Horror|Thriller
+77	Perfectly Normal	1994	Comedy
+78	Mr. Toad's Wild Ride (a.k.a. The Wind in the Willows)	2005	Adventure|Animation|Comedy
+79	Born Reckless	2008	Action|Adventure|Crime|Drama|Romance
+80	Lapland Odyssey (Napapiirin sankarit)	1993	Comedy|Drama|Romance
+81	The Elephant Man	1989	Drama
+82	Head of State	2012	Comedy
+83	Voyage to Cythera (Taxidi sta Kythira)	2004	Drama
+84	Monga	2006	Crime|Drama
+85	Tom & Thomas	1995	Adventure|Children
+86	Diplomatic Siege	1999	Action|Thriller
+87	Curse of the Puppet Master (Puppet Master 6: The Curse)	2001	Horror|Sci-Fi|Thriller
+88	Dante's Inferno: An Animated Epic	2007	Action|Animation|Fantasy
+89	360	1960	Drama
+90	Blackball	2004	Comedy|Drama
+91	Devil's Own, The	2003	Action|Drama|Thriller
+92	Devil at 4 O'Clock, The	2010	Drama
+93	'Til There Was You	2006	Drama|Romance
+94	Alice in Wonderland	2006	Children|Fantasy|Sci-Fi
+95	Wicked City (Yôjû toshi)	2011	Animation|Fantasy|Horror|Sci-Fi
+96	War Tapes, The	1997	Documentary|War
+97	Miracle in Milan (Miracolo a Milano)	2003	Comedy|Drama|Fantasy
+98	Sands of Iwo Jima	1999	Action|Drama|Romance|War100	The Dark Knight	2008	Drama
+99	The Dark Knight	2008	Drama
+100	Inception	2010	Drama
+101	Scott Pilgrim vs. the World	2010	Fantasy
+102	Spider-Man	2002	Drama
+103	Zodiac	2007	Thriller
+104	Get Out	2017	Horror
+105	Ant-Man	2015	Drama
+107	Final Destination	2000	Thriller
+109	Black Panther	2018	Drama
+106	IT	1990	Horror
+110	Fantastic Four	2004	Drama
